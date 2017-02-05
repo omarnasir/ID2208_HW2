@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.flightreservationcompany.org/flightdataschema.xsd"
+	xmlns:tns="http://www.flightreservationcompany.org/flightdataschema.xsd"
+	elementFormDefault="qualified">
+	<xsd:element name="flightData">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="itinerary" minOccurs="0" maxOccurs="unbounded">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="flightNum" type="xsd:integer" />
+							<xsd:element name="depTime" type="xsd:time" />
+							<xsd:element name="arrTime" type="xsd:time" />
+							<xsd:element name="flightDate" type="xsd:date" />
+							<xsd:element name="price" type="xsd:integer" />
+							<xsd:element name="tickets" type="xsd:integer" />
+						</xsd:sequence>
+						<xsd:attribute name="fromCity" type="xsd:string" />
+						<xsd:attribute name="toCity" type="xsd:string" />
+						<xsd:attribute name="id" type="xsd:integer" />
+					</xsd:complexType>
+				</xsd:element>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+</xsd:schema>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:flightData xmlns:tns="http://www.flightreservationcompany.org/flightdataschema.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.flightreservationcompany.org/flightdataschema.xsd flightDataSchema.xsd ">
+  <tns:itinerary fromCity="Stockholm" id="0" toCity="London">
+  <tns:flightNum>111</tns:flightNum>
+    <tns:depTime>12:00:00</tns:depTime>
+    <tns:arrTime>15:00:00</tns:arrTime>
+    <tns:flightDate>2017-01-01</tns:flightDate>
+    <tns:price>500</tns:price>
+    <tns:tickets>10</tns:tickets>
+  </tns:itinerary>
+  <tns:itinerary fromCity="London" id="1" toCity="Paris">
+    <tns:flightNum>112</tns:flightNum>
+    <tns:depTime>12:00:00</tns:depTime>
+    <tns:arrTime>15:00:00</tns:arrTime>
+    <tns:flightDate>2017-01-02</tns:flightDate>
+    <tns:price>400</tns:price>
+    <tns:tickets>5</tns:tickets>
+  </tns:itinerary>
+  <tns:itinerary fromCity="Stockholm" id="2" toCity="Paris">
+    <tns:flightNum>113</tns:flightNum>
+    <tns:depTime>12:00:00</tns:depTime>
+    <tns:arrTime>15:00:00</tns:arrTime>
+    <tns:flightDate>2017-01-01</tns:flightDate>
+    <tns:price>700</tns:price>
+    <tns:tickets>0</tns:tickets>
+  </tns:itinerary>
+</tns:flightData>

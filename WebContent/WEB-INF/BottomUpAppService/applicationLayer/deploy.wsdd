@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Use this file to deploy some handlers/chains and services      --><!-- Two ways to do this:                                           --><!--   java org.apache.axis.client.AdminClient deploy.wsdd          --><!--      after the axis server is running                          --><!-- or                                                             --><!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   --><!--      from the same directory that the Axis engine runs         --><deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from BottomUpAppService WSDL service -->
+
+  <service name="BottomUpApp" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://applicationLayer"/>
+      <parameter name="wsdlServiceElement" value="BottomUpAppService"/>
+      <parameter name="schemaQualified" value="http://dataObjects,http://applicationLayer"/>
+      <parameter name="wsdlServicePort" value="BottomUpApp"/>
+      <parameter name="className" value="applicationLayer.BottomUpApp"/>
+      <parameter name="wsdlPortType" value="BottomUpApp"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation xmlns:operNS="http://applicationLayer" xmlns:retNS="http://applicationLayer" xmlns:rtns="http://dataObjects" name="checkItinerary" qname="operNS:checkItinerary" returnQName="retNS:checkItineraryReturn" returnType="rtns:FlightCityData" soapAction="">
+        <parameter xmlns:pns="http://applicationLayer" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:fromCity" type="tns:string"/>
+        <parameter xmlns:pns="http://applicationLayer" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:toCity" type="tns:string"/>
+      </operation>
+      <parameter name="allowedMethods" value="checkItinerary"/>
+
+      <typeMapping xmlns:ns="http://dataObjects" qname="ns:FlightCityData" type="java:dataObjects.FlightCityData" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+  </service>
+</deployment>
