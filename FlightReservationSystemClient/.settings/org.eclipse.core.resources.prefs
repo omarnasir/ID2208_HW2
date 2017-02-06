@@ -1,0 +1,10 @@
+eclipse.preferences.version=1
+encoding//src/applicationLayer/BottomUpApp.java=UTF-8
+encoding//src/applicationLayer/BottomUpAppService.java=UTF-8
+encoding//src/applicationLayer/BottomUpAppServiceLocator.java=UTF-8
+encoding//src/applicationLayer/BottomUpAppSoapBindingStub.java=UTF-8
+encoding//src/applicationLayer/TopDownAppSOAPStub.java=UTF-8
+encoding//src/applicationLayer/TopDownApp_PortType.java=UTF-8
+encoding//src/applicationLayer/TopDownApp_Service.java=UTF-8
+encoding//src/applicationLayer/TopDownApp_ServiceLocator.java=UTF-8
+encoding//src/dataObjects/FlightCityData.java=UTF-8
