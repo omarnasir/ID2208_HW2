@@ -47,6 +47,16 @@
   <ns1:parameter name="wsdlServiceElement" value="BottomUpAppService"/>
   <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns3:FlightCityData" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:dataObjects.FlightCityData" xmlns:ns3="http://dataObjects"/>
  </ns1:service>
+ <ns1:service name="TopDownAppSOAP" provider="java:RPC" style="wrapped" use="literal">
+  <ns1:parameter name="allowedMethods" value="*"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="wsdlPortType" value="TopDownApp"/>
+  <ns1:parameter name="className" value="applicationLayer.TopDownAppSOAPSkeleton"/>
+  <ns1:parameter name="wsdlServicePort" value="TopDownAppSOAP"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://applicationLayer"/>
+  <ns1:parameter name="wsdlServiceElement" value="TopDownApp"/>
+  <ns1:parameter name="schemaUnqualified" value="http://applicationLayer"/>
+ </ns1:service>
  <ns1:transport name="http">
   <ns1:requestFlow>
    <ns1:handler type="URLMapper"/>

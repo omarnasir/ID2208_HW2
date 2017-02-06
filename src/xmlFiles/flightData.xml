@@ -16,7 +16,7 @@
     <tns:price>400</tns:price>
     <tns:tickets>5</tns:tickets>
   </tns:itinerary>
-  <tns:itinerary fromCity="Stockholm" id="2" toCity="Paris">
+  <tns:itinerary fromCity="Stockholm" id="2" toCity="Berlin">
     <tns:flightNum>113</tns:flightNum>
     <tns:depTime>12:00:00</tns:depTime>
     <tns:arrTime>15:00:00</tns:arrTime>

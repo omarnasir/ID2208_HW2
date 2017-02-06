@@ -2,12 +2,16 @@ package businessLayer;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 import dataObjects.FlightCityData;
 import dataObjects.FlightData;
 
 public class Business {
 	private static FlightData flightDataObj = new FlightData();
+	private static List<Integer> bookingNumbers = new ArrayList<Integer>();
+	private static List<Integer> ticketNumbers = new ArrayList<Integer>();
 	
 	public Business()
 	{
@@ -70,6 +74,58 @@ public class Business {
 		return null;
 	}
 
+	public Integer bookTicket(String creditCard, Integer flightNum)
+	{
+		for (int i=0; i < getFlightDataObj().getItinerary().size(); i++)
+		{
+			if(getFlightDataObj().getItinerary().get(i).getFlightNum() == flightNum)
+			{
+				if(bookingNumbers.size() > 0)
+				{
+					//Process creditCard
+					//Assume CC is valid
+					int max = Collections.max(bookingNumbers);
+					bookingNumbers.add(max + 1);
+				}
+				else
+					bookingNumbers.add(0);
+				break;
+			}
+		}
+		if(bookingNumbers.size() > 0)
+		return bookingNumbers.get(bookingNumbers.size() - 1);
+		else
+			return -1;
+	}
+	
+	public Integer issueTicket(Integer bookingNum)
+	{
+		int exists = Collections.binarySearch(bookingNumbers, bookingNum);
+		if(exists > -1)
+		{
+			if(ticketNumbers.size() > 0)
+			{
+				int max = Collections.max(ticketNumbers);
+				ticketNumbers.add(max + 1);
+			}
+			else
+				ticketNumbers.add(0);
+		}
+		else
+			return -1;
+		
+		for (Iterator<Integer> iter = bookingNumbers.listIterator(); iter.hasNext(); ) {
+		    Integer a = iter.next();
+		    if (a == bookingNum) {
+		        iter.remove();
+		    }
+		}
+		if(ticketNumbers.size() > 0)
+		return ticketNumbers.get(ticketNumbers.size() - 1);
+		else
+			return -1;
+	}
+	
 	private FlightCityData populateFlightCityObj(int i) {
 		
 		FlightCityData flightCityDataObj = new FlightCityData();
