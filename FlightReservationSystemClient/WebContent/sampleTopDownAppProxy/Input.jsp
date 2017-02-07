@@ -61,14 +61,14 @@ valid = false;
 <INPUT TYPE="HIDDEN" NAME="method" VALUE="<%=org.eclipse.jst.ws.util.JspUtils.markup(method)%>">
 <TABLE>
 <TR>
-<TD COLSPAN="1" ALIGN="LEFT">creditCard:</TD>
-<TD ALIGN="left"><INPUT TYPE="TEXT" NAME="creditCard16" SIZE=20></TD>
+<TD COLSPAN="1" ALIGN="LEFT">username:</TD>
+<TD ALIGN="left"><INPUT TYPE="TEXT" NAME="username16" SIZE=20></TD>
 </TR>
 </TABLE>
 <TABLE>
 <TR>
-<TD COLSPAN="1" ALIGN="LEFT">flightNum:</TD>
-<TD ALIGN="left"><INPUT TYPE="TEXT" NAME="flightNum18" SIZE=20></TD>
+<TD COLSPAN="1" ALIGN="LEFT">password:</TD>
+<TD ALIGN="left"><INPUT TYPE="TEXT" NAME="password18" SIZE=20></TD>
 </TR>
 </TABLE>
 <BR>
@@ -84,8 +84,31 @@ valid = false;
 <INPUT TYPE="HIDDEN" NAME="method" VALUE="<%=org.eclipse.jst.ws.util.JspUtils.markup(method)%>">
 <TABLE>
 <TR>
+<TD COLSPAN="1" ALIGN="LEFT">creditCard:</TD>
+<TD ALIGN="left"><INPUT TYPE="TEXT" NAME="creditCard23" SIZE=20></TD>
+</TR>
+</TABLE>
+<TABLE>
+<TR>
+<TD COLSPAN="1" ALIGN="LEFT">flightNum:</TD>
+<TD ALIGN="left"><INPUT TYPE="TEXT" NAME="flightNum25" SIZE=20></TD>
+</TR>
+</TABLE>
+<BR>
+<INPUT TYPE="SUBMIT" VALUE="Invoke">
+<INPUT TYPE="RESET" VALUE="Clear">
+</FORM>
+<%
+break;
+case 27:
+valid = false;
+%>
+<FORM METHOD="POST" ACTION="Result.jsp" TARGET="result">
+<INPUT TYPE="HIDDEN" NAME="method" VALUE="<%=org.eclipse.jst.ws.util.JspUtils.markup(method)%>">
+<TABLE>
+<TR>
 <TD COLSPAN="1" ALIGN="LEFT">bookingNum:</TD>
-<TD ALIGN="left"><INPUT TYPE="TEXT" NAME="bookingNum23" SIZE=20></TD>
+<TD ALIGN="left"><INPUT TYPE="TEXT" NAME="bookingNum30" SIZE=20></TD>
 </TR>
 </TABLE>
 <BR>

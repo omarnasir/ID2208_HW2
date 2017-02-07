@@ -44,13 +44,19 @@ public class TopDownAppProxy implements applicationLayer.TopDownApp_PortType {
     return topDownApp_PortType;
   }
   
-  public java.math.BigInteger bookTicket(java.lang.String creditCard, java.math.BigInteger flightNum) throws java.rmi.RemoteException{
+  public java.lang.String login(java.lang.String username, java.lang.String password) throws java.rmi.RemoteException{
+    if (topDownApp_PortType == null)
+      _initTopDownAppProxy();
+    return topDownApp_PortType.login(username, password);
+  }
+  
+  public java.lang.String bookTicket(java.lang.String creditCard, java.math.BigInteger flightNum) throws java.rmi.RemoteException{
     if (topDownApp_PortType == null)
       _initTopDownAppProxy();
     return topDownApp_PortType.bookTicket(creditCard, flightNum);
   }
   
-  public java.math.BigInteger issueTicket(java.math.BigInteger bookingNum) throws java.rmi.RemoteException{
+  public java.lang.String issueTicket(java.math.BigInteger bookingNum) throws java.rmi.RemoteException{
     if (topDownApp_PortType == null)
       _initTopDownAppProxy();
     return topDownApp_PortType.issueTicket(bookingNum);

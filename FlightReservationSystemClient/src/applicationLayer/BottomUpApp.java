@@ -8,5 +8,7 @@
 package applicationLayer;
 
 public interface BottomUpApp extends java.rmi.Remote {
+    public dataObjects.FlightTicketData checkAvailability(int howManyTickets, int flightNumber, java.util.Calendar date) throws java.rmi.RemoteException;
     public dataObjects.FlightCityData[] checkItinerary(java.lang.String fromCity, java.lang.String toCity) throws java.rmi.RemoteException;
+    public dataObjects.FlightTicketData[] priceOfItineraries(int[] flightNumbers) throws java.rmi.RemoteException;
 }

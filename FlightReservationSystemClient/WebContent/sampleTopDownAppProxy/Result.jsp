@@ -63,23 +63,23 @@ if(getTopDownApp_PortType10mtemp == null){
 break;
 case 13:
         gotMethod = true;
-        String creditCard_1id=  request.getParameter("creditCard16");
-            java.lang.String creditCard_1idTemp = null;
-        if(!creditCard_1id.equals("")){
-         creditCard_1idTemp  = creditCard_1id;
+        String username_1id=  request.getParameter("username16");
+            java.lang.String username_1idTemp = null;
+        if(!username_1id.equals("")){
+         username_1idTemp  = username_1id;
         }
-        String flightNum_2id=  request.getParameter("flightNum18");
-            java.math.BigInteger flightNum_2idTemp = null;
-        if(!flightNum_2id.equals("")){
-         flightNum_2idTemp  = new java.math.BigInteger(flightNum_2id);
+        String password_2id=  request.getParameter("password18");
+            java.lang.String password_2idTemp = null;
+        if(!password_2id.equals("")){
+         password_2idTemp  = password_2id;
         }
-        java.math.BigInteger bookTicket13mtemp = sampleTopDownAppProxyid.bookTicket(creditCard_1idTemp,flightNum_2idTemp);
-if(bookTicket13mtemp == null){
+        java.lang.String login13mtemp = sampleTopDownAppProxyid.login(username_1idTemp,password_2idTemp);
+if(login13mtemp == null){
 %>
-<%=bookTicket13mtemp %>
+<%=login13mtemp %>
 <%
 }else{
-        String tempResultreturnp14 = org.eclipse.jst.ws.util.JspUtils.markup(bookTicket13mtemp.toString());
+        String tempResultreturnp14 = org.eclipse.jst.ws.util.JspUtils.markup(String.valueOf(login13mtemp));
         %>
         <%= tempResultreturnp14 %>
         <%
@@ -87,20 +87,44 @@ if(bookTicket13mtemp == null){
 break;
 case 20:
         gotMethod = true;
-        String bookingNum_3id=  request.getParameter("bookingNum23");
-            java.math.BigInteger bookingNum_3idTemp = null;
-        if(!bookingNum_3id.equals("")){
-         bookingNum_3idTemp  = new java.math.BigInteger(bookingNum_3id);
+        String creditCard_3id=  request.getParameter("creditCard23");
+            java.lang.String creditCard_3idTemp = null;
+        if(!creditCard_3id.equals("")){
+         creditCard_3idTemp  = creditCard_3id;
         }
-        java.math.BigInteger issueTicket20mtemp = sampleTopDownAppProxyid.issueTicket(bookingNum_3idTemp);
-if(issueTicket20mtemp == null){
+        String flightNum_4id=  request.getParameter("flightNum25");
+            java.math.BigInteger flightNum_4idTemp = null;
+        if(!flightNum_4id.equals("")){
+         flightNum_4idTemp  = new java.math.BigInteger(flightNum_4id);
+        }
+        java.lang.String bookTicket20mtemp = sampleTopDownAppProxyid.bookTicket(creditCard_3idTemp,flightNum_4idTemp);
+if(bookTicket20mtemp == null){
 %>
-<%=issueTicket20mtemp %>
+<%=bookTicket20mtemp %>
 <%
 }else{
-        String tempResultreturnp21 = org.eclipse.jst.ws.util.JspUtils.markup(issueTicket20mtemp.toString());
+        String tempResultreturnp21 = org.eclipse.jst.ws.util.JspUtils.markup(bookTicket20mtemp.toString());
         %>
         <%= tempResultreturnp21 %>
+        <%
+}
+break;
+case 27:
+        gotMethod = true;
+        String bookingNum_5id=  request.getParameter("bookingNum30");
+            java.math.BigInteger bookingNum_5idTemp = null;
+        if(!bookingNum_5id.equals("")){
+         bookingNum_5idTemp  = new java.math.BigInteger(bookingNum_5id);
+        }
+        java.lang.String issueTicket27mtemp = sampleTopDownAppProxyid.issueTicket(bookingNum_5idTemp);
+if(issueTicket27mtemp == null){
+%>
+<%=issueTicket27mtemp %>
+<%
+}else{
+        String tempResultreturnp28 = org.eclipse.jst.ws.util.JspUtils.markup(issueTicket27mtemp.toString());
+        %>
+        <%= tempResultreturnp28 %>
         <%
 }
 break;

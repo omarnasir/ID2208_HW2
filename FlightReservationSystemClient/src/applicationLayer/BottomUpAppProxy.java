@@ -44,10 +44,22 @@ public class BottomUpAppProxy implements applicationLayer.BottomUpApp {
     return bottomUpApp;
   }
   
+  public dataObjects.FlightTicketData checkAvailability(int howManyTickets, int flightNumber, java.util.Calendar date) throws java.rmi.RemoteException{
+    if (bottomUpApp == null)
+      _initBottomUpAppProxy();
+    return bottomUpApp.checkAvailability(howManyTickets, flightNumber, date);
+  }
+  
   public dataObjects.FlightCityData[] checkItinerary(java.lang.String fromCity, java.lang.String toCity) throws java.rmi.RemoteException{
     if (bottomUpApp == null)
       _initBottomUpAppProxy();
     return bottomUpApp.checkItinerary(fromCity, toCity);
+  }
+  
+  public dataObjects.FlightTicketData[] priceOfItineraries(int[] flightNumbers) throws java.rmi.RemoteException{
+    if (bottomUpApp == null)
+      _initBottomUpAppProxy();
+    return bottomUpApp.priceOfItineraries(flightNumbers);
   }
   
   

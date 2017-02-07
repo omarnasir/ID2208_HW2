@@ -16,13 +16,28 @@ public class BottomUpAppSoapBindingStub extends org.apache.axis.client.Stub impl
     static org.apache.axis.description.OperationDesc [] _operations;
 
     static {
-        _operations = new org.apache.axis.description.OperationDesc[1];
+        _operations = new org.apache.axis.description.OperationDesc[3];
         _initOperationDesc1();
     }
 
     private static void _initOperationDesc1(){
         org.apache.axis.description.OperationDesc oper;
         org.apache.axis.description.ParameterDesc param;
+        oper = new org.apache.axis.description.OperationDesc();
+        oper.setName("checkAvailability");
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("http://applicationLayer", "howManyTickets"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "int"), int.class, false, false);
+        oper.addParameter(param);
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("http://applicationLayer", "flightNumber"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "int"), int.class, false, false);
+        oper.addParameter(param);
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("http://applicationLayer", "date"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "dateTime"), java.util.Calendar.class, false, false);
+        oper.addParameter(param);
+        oper.setReturnType(new javax.xml.namespace.QName("http://dataObjects", "FlightTicketData"));
+        oper.setReturnClass(dataObjects.FlightTicketData.class);
+        oper.setReturnQName(new javax.xml.namespace.QName("http://applicationLayer", "checkAvailabilityReturn"));
+        oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
+        oper.setUse(org.apache.axis.constants.Use.LITERAL);
+        _operations[0] = oper;
+
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("checkItinerary");
         param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("http://applicationLayer", "fromCity"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false);
@@ -34,7 +49,18 @@ public class BottomUpAppSoapBindingStub extends org.apache.axis.client.Stub impl
         oper.setReturnQName(new javax.xml.namespace.QName("http://applicationLayer", "checkItineraryReturn"));
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
-        _operations[0] = oper;
+        _operations[1] = oper;
+
+        oper = new org.apache.axis.description.OperationDesc();
+        oper.setName("priceOfItineraries");
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("http://applicationLayer", "flightNumbers"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "int"), int[].class, false, false);
+        oper.addParameter(param);
+        oper.setReturnType(new javax.xml.namespace.QName("http://dataObjects", "FlightTicketData"));
+        oper.setReturnClass(dataObjects.FlightTicketData[].class);
+        oper.setReturnQName(new javax.xml.namespace.QName("http://applicationLayer", "priceOfItinerariesReturn"));
+        oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
+        oper.setUse(org.apache.axis.constants.Use.LITERAL);
+        _operations[2] = oper;
 
     }
 
@@ -70,6 +96,13 @@ public class BottomUpAppSoapBindingStub extends org.apache.axis.client.Stub impl
             qName = new javax.xml.namespace.QName("http://dataObjects", "FlightCityData");
             cachedSerQNames.add(qName);
             cls = dataObjects.FlightCityData.class;
+            cachedSerClasses.add(cls);
+            cachedSerFactories.add(beansf);
+            cachedDeserFactories.add(beandf);
+
+            qName = new javax.xml.namespace.QName("http://dataObjects", "FlightTicketData");
+            cachedSerQNames.add(qName);
+            cls = dataObjects.FlightTicketData.class;
             cachedSerClasses.add(cls);
             cachedSerFactories.add(beansf);
             cachedDeserFactories.add(beandf);
@@ -140,12 +173,46 @@ public class BottomUpAppSoapBindingStub extends org.apache.axis.client.Stub impl
         }
     }
 
-    public dataObjects.FlightCityData[] checkItinerary(java.lang.String fromCity, java.lang.String toCity) throws java.rmi.RemoteException {
+    public dataObjects.FlightTicketData checkAvailability(int howManyTickets, int flightNumber, java.util.Calendar date) throws java.rmi.RemoteException {
         if (super.cachedEndpoint == null) {
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
         _call.setOperation(_operations[0]);
+        _call.setUseSOAPAction(true);
+        _call.setSOAPActionURI("");
+        _call.setEncodingStyle(null);
+        _call.setProperty(org.apache.axis.client.Call.SEND_TYPE_ATTR, Boolean.FALSE);
+        _call.setProperty(org.apache.axis.AxisEngine.PROP_DOMULTIREFS, Boolean.FALSE);
+        _call.setSOAPVersion(org.apache.axis.soap.SOAPConstants.SOAP11_CONSTANTS);
+        _call.setOperationName(new javax.xml.namespace.QName("http://applicationLayer", "checkAvailability"));
+
+        setRequestHeaders(_call);
+        setAttachments(_call);
+ try {        java.lang.Object _resp = _call.invoke(new java.lang.Object[] {new java.lang.Integer(howManyTickets), new java.lang.Integer(flightNumber), date});
+
+        if (_resp instanceof java.rmi.RemoteException) {
+            throw (java.rmi.RemoteException)_resp;
+        }
+        else {
+            extractAttachments(_call);
+            try {
+                return (dataObjects.FlightTicketData) _resp;
+            } catch (java.lang.Exception _exception) {
+                return (dataObjects.FlightTicketData) org.apache.axis.utils.JavaUtils.convert(_resp, dataObjects.FlightTicketData.class);
+            }
+        }
+  } catch (org.apache.axis.AxisFault axisFaultException) {
+  throw axisFaultException;
+}
+    }
+
+    public dataObjects.FlightCityData[] checkItinerary(java.lang.String fromCity, java.lang.String toCity) throws java.rmi.RemoteException {
+        if (super.cachedEndpoint == null) {
+            throw new org.apache.axis.NoEndPointException();
+        }
+        org.apache.axis.client.Call _call = createCall();
+        _call.setOperation(_operations[1]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("");
         _call.setEncodingStyle(null);
@@ -167,6 +234,40 @@ public class BottomUpAppSoapBindingStub extends org.apache.axis.client.Stub impl
                 return (dataObjects.FlightCityData[]) _resp;
             } catch (java.lang.Exception _exception) {
                 return (dataObjects.FlightCityData[]) org.apache.axis.utils.JavaUtils.convert(_resp, dataObjects.FlightCityData[].class);
+            }
+        }
+  } catch (org.apache.axis.AxisFault axisFaultException) {
+  throw axisFaultException;
+}
+    }
+
+    public dataObjects.FlightTicketData[] priceOfItineraries(int[] flightNumbers) throws java.rmi.RemoteException {
+        if (super.cachedEndpoint == null) {
+            throw new org.apache.axis.NoEndPointException();
+        }
+        org.apache.axis.client.Call _call = createCall();
+        _call.setOperation(_operations[2]);
+        _call.setUseSOAPAction(true);
+        _call.setSOAPActionURI("");
+        _call.setEncodingStyle(null);
+        _call.setProperty(org.apache.axis.client.Call.SEND_TYPE_ATTR, Boolean.FALSE);
+        _call.setProperty(org.apache.axis.AxisEngine.PROP_DOMULTIREFS, Boolean.FALSE);
+        _call.setSOAPVersion(org.apache.axis.soap.SOAPConstants.SOAP11_CONSTANTS);
+        _call.setOperationName(new javax.xml.namespace.QName("http://applicationLayer", "priceOfItineraries"));
+
+        setRequestHeaders(_call);
+        setAttachments(_call);
+ try {        java.lang.Object _resp = _call.invoke(new java.lang.Object[] {flightNumbers});
+
+        if (_resp instanceof java.rmi.RemoteException) {
+            throw (java.rmi.RemoteException)_resp;
+        }
+        else {
+            extractAttachments(_call);
+            try {
+                return (dataObjects.FlightTicketData[]) _resp;
+            } catch (java.lang.Exception _exception) {
+                return (dataObjects.FlightTicketData[]) org.apache.axis.utils.JavaUtils.convert(_resp, dataObjects.FlightTicketData[].class);
             }
         }
   } catch (org.apache.axis.AxisFault axisFaultException) {
