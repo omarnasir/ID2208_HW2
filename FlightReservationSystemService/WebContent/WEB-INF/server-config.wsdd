@@ -33,11 +33,19 @@
   <ns1:parameter name="className" value="org.apache.axis.Version"/>
  </ns1:service>
  <ns1:service name="BottomUpApp" provider="java:RPC" style="wrapped" use="literal">
-  <ns3:operation name="checkItinerary" qname="ns1:checkItinerary" returnQName="ns1:checkItineraryReturn" returnType="ns2:FlightCityData" soapAction="" xmlns:ns1="http://applicationLayer" xmlns:ns2="http://dataObjects" xmlns:ns3="http://xml.apache.org/axis/wsdd/">
-   <ns3:parameter qname="ns1:fromCity" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
-   <ns3:parameter qname="ns1:toCity" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  <ns3:operation name="checkAvailability" qname="ns1:checkAvailability" returnQName="ns1:checkAvailabilityReturn" returnType="ns2:FlightTicketData" soapAction="" xmlns:ns1="http://applicationLayer" xmlns:ns2="http://dataObjects" xmlns:ns3="http://xml.apache.org/axis/wsdd/">
+   <ns3:parameter qname="ns1:howManyTickets" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns3:parameter qname="ns1:flightNumber" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns3:parameter qname="ns1:date" type="xsd:dateTime" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
   </ns3:operation>
-  <ns1:parameter name="allowedMethods" value="checkItinerary"/>
+  <ns1:operation name="checkItinerary" qname="ns3:checkItinerary" returnQName="ns3:checkItineraryReturn" returnType="ns4:FlightCityData" soapAction="" xmlns:ns3="http://applicationLayer" xmlns:ns4="http://dataObjects">
+   <ns1:parameter qname="ns3:fromCity" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns3:toCity" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </ns1:operation>
+  <ns1:operation name="priceOfItineraries" qname="ns5:priceOfItineraries" returnQName="ns5:priceOfItinerariesReturn" returnType="ns6:FlightTicketData" soapAction="" xmlns:ns5="http://applicationLayer" xmlns:ns6="http://dataObjects">
+   <ns1:parameter qname="ns5:flightNumbers" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </ns1:operation>
+  <ns1:parameter name="allowedMethods" value="priceOfItineraries checkAvailability checkItinerary"/>
   <ns1:parameter name="typeMappingVersion" value="1.2"/>
   <ns1:parameter name="wsdlPortType" value="BottomUpApp"/>
   <ns1:parameter name="className" value="applicationLayer.BottomUpApp"/>
@@ -45,14 +53,15 @@
   <ns1:parameter name="schemaQualified" value="http://dataObjects,http://applicationLayer"/>
   <ns1:parameter name="wsdlTargetNamespace" value="http://applicationLayer"/>
   <ns1:parameter name="wsdlServiceElement" value="BottomUpAppService"/>
-  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns3:FlightCityData" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:dataObjects.FlightCityData" xmlns:ns3="http://dataObjects"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns7:FlightCityData" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:dataObjects.FlightCityData" xmlns:ns7="http://dataObjects"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns8:FlightTicketData" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:dataObjects.FlightTicketData" xmlns:ns8="http://dataObjects"/>
  </ns1:service>
  <ns1:service name="TopDownAppSOAP" provider="java:RPC" style="wrapped" use="literal">
   <ns1:parameter name="allowedMethods" value="*"/>
-  <ns1:parameter name="typeMappingVersion" value="1.2"/>
   <ns1:parameter name="wsdlPortType" value="TopDownApp"/>
-  <ns1:parameter name="className" value="applicationLayer.TopDownAppSOAPSkeleton"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
   <ns1:parameter name="wsdlServicePort" value="TopDownAppSOAP"/>
+  <ns1:parameter name="className" value="applicationLayer.TopDownAppSOAPSkeleton"/>
   <ns1:parameter name="wsdlTargetNamespace" value="http://applicationLayer"/>
   <ns1:parameter name="wsdlServiceElement" value="TopDownApp"/>
   <ns1:parameter name="schemaUnqualified" value="http://applicationLayer"/>

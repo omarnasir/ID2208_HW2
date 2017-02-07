@@ -1,111 +1,231 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<wsdl:definitions targetNamespace="http://applicationLayer"
-	xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://applicationLayer"
-	xmlns:intf="http://applicationLayer" xmlns:tns1="http://dataObjects"
-	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/"
-	xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-	<!--WSDL created by Apache Axis version: 1.4 Built on Apr 22, 2006 (06:55:48 
-		PDT) -->
-	<wsdl:types>
-		<schema elementFormDefault="qualified" targetNamespace="http://applicationLayer"
-			xmlns="http://www.w3.org/2001/XMLSchema">
-			<import namespace="http://dataObjects" />
-			<element name="checkItinerary">
-				<complexType>
-					<sequence>
-						<element name="fromCity" type="xsd:string" />
-						<element name="toCity" type="xsd:string" />
-					</sequence>
-				</complexType>
-			</element>
-			<element name="checkItineraryResponse">
-				<complexType>
-					<sequence>
-						<element maxOccurs="unbounded" name="checkItineraryReturn"
-							type="tns1:FlightCityData" />
-					</sequence>
-				</complexType>
-			</element>
-		</schema>
-		<schema elementFormDefault="qualified" targetNamespace="http://dataObjects"
-			xmlns="http://www.w3.org/2001/XMLSchema">
-			<complexType name="FlightCityData">
-				<sequence>
-					<element name="flightNum" nillable="true" type="xsd:int" />
-					<element name="fromCity" nillable="true" type="xsd:string" />
-					<element name="id" nillable="true" type="xsd:int" />
-					<element name="toCity" nillable="true" type="xsd:string" />
-				</sequence>
-			</complexType>
-		</schema>
-	</wsdl:types>
+<wsdl:definitions targetNamespace="http://applicationLayer" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://applicationLayer" xmlns:intf="http://applicationLayer" xmlns:tns1="http://dataObjects" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://applicationLayer" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://dataObjects"/>
+   <element name="checkAvailability">
+    <complexType>
+     <sequence>
+      <element name="howManyTickets" type="xsd:integer"/>
+      <element name="flightNumber" type="xsd:integer"/>
+      <element name="date" type="xsd:dateTime"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="checkAvailabilityResponse">
+    <complexType>
+     <sequence>
+      <element name="checkAvailabilityReturn" type="tns1:FlightTicketData"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="checkItinerary">
+    <complexType>
+     <sequence>
+      <element name="fromCity" type="xsd:string"/>
+      <element name="toCity" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="checkItineraryResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="checkItineraryReturn" type="tns1:FlightCityData"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="priceOfItineraries">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="flightNumbers" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="priceOfItinerariesResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="priceOfItinerariesReturn" type="tns1:FlightTicketData"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://dataObjects" xmlns="http://www.w3.org/2001/XMLSchema">
+   <complexType name="FlightTicketData">
+    <sequence>
+     <element name="id" nillable="true" type="xsd:int"/>
+     <element name="price" nillable="true" type="xsd:int"/>
+     <element name="ticketAvail" type="xsd:boolean"/>
+    </sequence>
+   </complexType>
+   <complexType name="FlightCityData">
+    <sequence>
+     <element name="flightNum" nillable="true" type="xsd:int"/>
+     <element name="fromCity" nillable="true" type="xsd:string"/>
+     <element name="id" nillable="true" type="xsd:int"/>
+     <element name="toCity" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
 
-	<wsdl:message name="checkItineraryRequest">
+   <wsdl:message name="checkItineraryRequest">
 
-		<wsdl:part element="impl:checkItinerary" name="parameters">
+      <wsdl:part element="impl:checkItinerary" name="parameters">
 
-		</wsdl:part>
+      </wsdl:part>
 
-	</wsdl:message>
+   </wsdl:message>
 
-	<wsdl:message name="checkItineraryResponse">
+   <wsdl:message name="checkAvailabilityRequest">
 
-		<wsdl:part element="impl:checkItineraryResponse" name="parameters">
+      <wsdl:part element="impl:checkAvailability" name="parameters">
 
-		</wsdl:part>
+      </wsdl:part>
 
-	</wsdl:message>
+   </wsdl:message>
 
-	<wsdl:portType name="BottomUpApp">
+   <wsdl:message name="checkItineraryResponse">
 
-		<wsdl:operation name="checkItinerary">
+      <wsdl:part element="impl:checkItineraryResponse" name="parameters">
 
-			<wsdl:input message="impl:checkItineraryRequest" name="checkItineraryRequest">
+      </wsdl:part>
 
-			</wsdl:input>
+   </wsdl:message>
 
-			<wsdl:output message="impl:checkItineraryResponse" name="checkItineraryResponse">
+   <wsdl:message name="priceOfItinerariesRequest">
 
-			</wsdl:output>
+      <wsdl:part element="impl:priceOfItineraries" name="parameters">
 
-		</wsdl:operation>
+      </wsdl:part>
 
-	</wsdl:portType>
+   </wsdl:message>
 
-	<wsdl:binding name="BottomUpAppSoapBinding" type="impl:BottomUpApp">
+   <wsdl:message name="priceOfItinerariesResponse">
 
-		<wsdlsoap:binding style="document"
-			transport="http://schemas.xmlsoap.org/soap/http" />
+      <wsdl:part element="impl:priceOfItinerariesResponse" name="parameters">
 
-		<wsdl:operation name="checkItinerary">
+      </wsdl:part>
 
-			<wsdlsoap:operation soapAction="" />
+   </wsdl:message>
 
-			<wsdl:input name="checkItineraryRequest">
+   <wsdl:message name="checkAvailabilityResponse">
 
-				<wsdlsoap:body use="literal" />
+      <wsdl:part element="impl:checkAvailabilityResponse" name="parameters">
 
-			</wsdl:input>
+      </wsdl:part>
 
-			<wsdl:output name="checkItineraryResponse">
+   </wsdl:message>
 
-				<wsdlsoap:body use="literal" />
+   <wsdl:portType name="BottomUpApp">
 
-			</wsdl:output>
+      <wsdl:operation name="checkAvailability">
 
-		</wsdl:operation>
+         <wsdl:input message="impl:checkAvailabilityRequest" name="checkAvailabilityRequest">
 
-	</wsdl:binding>
+       </wsdl:input>
 
-	<wsdl:service name="BottomUpAppService">
+         <wsdl:output message="impl:checkAvailabilityResponse" name="checkAvailabilityResponse">
 
-		<wsdl:port binding="impl:BottomUpAppSoapBinding" name="BottomUpApp">
+       </wsdl:output>
 
-			<wsdlsoap:address
-				location="http://localhost:8080/FlightReservationSystem/services/BottomUpApp" />
+      </wsdl:operation>
 
-		</wsdl:port>
+      <wsdl:operation name="checkItinerary">
 
-	</wsdl:service>
+         <wsdl:input message="impl:checkItineraryRequest" name="checkItineraryRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:checkItineraryResponse" name="checkItineraryResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="priceOfItineraries">
+
+         <wsdl:input message="impl:priceOfItinerariesRequest" name="priceOfItinerariesRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:priceOfItinerariesResponse" name="priceOfItinerariesResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="BottomUpAppSoapBinding" type="impl:BottomUpApp">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="checkAvailability">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="checkAvailabilityRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="checkAvailabilityResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="checkItinerary">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="checkItineraryRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="checkItineraryResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="priceOfItineraries">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="priceOfItinerariesRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="priceOfItinerariesResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="BottomUpAppService">
+
+      <wsdl:port binding="impl:BottomUpAppSoapBinding" name="BottomUpApp">
+
+         <wsdlsoap:address location="http://localhost:8080/FlightReservationSystem/services/BottomUpApp"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
 
 </wsdl:definitions>

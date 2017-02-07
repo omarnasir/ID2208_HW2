@@ -8,6 +8,7 @@
 package applicationLayer;
 
 public interface TopDownApp_PortType extends java.rmi.Remote {
-    public java.math.BigInteger bookTicket(java.lang.String creditCard, java.math.BigInteger flightNum) throws java.rmi.RemoteException;
-    public java.math.BigInteger issueTicket(java.math.BigInteger bookingNum) throws java.rmi.RemoteException;
+    public java.lang.String login(java.lang.String username, java.lang.String password) throws java.rmi.RemoteException;
+    public java.lang.String bookTicket(java.lang.String creditCard, java.math.BigInteger flightNum) throws java.rmi.RemoteException;
+    public java.lang.String issueTicket(java.math.BigInteger bookingNum) throws java.rmi.RemoteException;
 }

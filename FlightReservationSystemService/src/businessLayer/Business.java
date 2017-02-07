@@ -2,11 +2,12 @@ package businessLayer;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
-import dataObjects.FlightCityData;
-import dataObjects.FlightData;
+import dataObjects.*;
 
 public class Business {
 	private static FlightData flightDataObj = new FlightData();
@@ -74,7 +75,7 @@ public class Business {
 		return null;
 	}
 
-	public Integer bookTicket(String creditCard, Integer flightNum)
+	public String bookTicket(String creditCard, Integer flightNum)
 	{
 		for (int i=0; i < getFlightDataObj().getItinerary().size(); i++)
 		{
@@ -93,12 +94,12 @@ public class Business {
 			}
 		}
 		if(bookingNumbers.size() > 0)
-		return bookingNumbers.get(bookingNumbers.size() - 1);
+		return "Booking Number: " + bookingNumbers.get(bookingNumbers.size() - 1).toString();
 		else
-			return -1;
+			return "Invalid Request";
 	}
 	
-	public Integer issueTicket(Integer bookingNum)
+	public String issueTicket(Integer bookingNum)
 	{
 		int exists = Collections.binarySearch(bookingNumbers, bookingNum);
 		if(exists > -1)
@@ -112,7 +113,7 @@ public class Business {
 				ticketNumbers.add(0);
 		}
 		else
-			return -1;
+			return "Invalid Request";
 		
 		for (Iterator<Integer> iter = bookingNumbers.listIterator(); iter.hasNext(); ) {
 		    Integer a = iter.next();
@@ -121,9 +122,9 @@ public class Business {
 		    }
 		}
 		if(ticketNumbers.size() > 0)
-		return ticketNumbers.get(ticketNumbers.size() - 1);
+		return "Ticket Number: " + ticketNumbers.get(ticketNumbers.size() - 1).toString();
 		else
-			return -1;
+			return "Invalid Request";
 	}
 	
 	private FlightCityData populateFlightCityObj(int i) {
@@ -134,5 +135,62 @@ public class Business {
 		flightCityDataObj.setFromCity(getFlightDataObj().getItinerary().get(i).getFromCity());
 		flightCityDataObj.setToCity(getFlightDataObj().getItinerary().get(i).getToCity());
 		return flightCityDataObj;
+	}
+
+	//Start from here :)
+	private FlightTicketData populateFlightTicketObj(int i){
+			
+			FlightTicketData flightTicketDataObj = new FlightTicketData();
+			flightTicketDataObj.setId(getFlightDataObj().getItinerary().get(i).getId());
+			if (getFlightDataObj().getItinerary().get(i).getTickets()>0){
+				flightTicketDataObj.setTicketAvail(true);
+			}		
+			else {
+				flightTicketDataObj.setTicketAvail(false);
+			}
+			flightTicketDataObj.setPrice(getFlightDataObj().getItinerary().get(i).getPrice());
+			
+			return flightTicketDataObj;
+		}
+	
+	
+	//Task 4
+	public FlightTicketData[] getPrices(Integer[] flightNumbers) {
+		
+		List<FlightTicketData> ticket = new ArrayList<FlightTicketData>();
+		
+		for(int i=0 ; i<flightNumbers.length; i++){
+			for (int j=0; j< getFlightDataObj().getItinerary().size(); j++){
+				if (flightNumbers[i].intValue() == getFlightDataObj().getItinerary().get(j).getFlightNum().intValue()){
+					ticket.add(populateFlightTicketObj(j));
+				}
+			}
+		}
+		
+		return ticket.toArray(new FlightTicketData[ticket.size()]);
+	}
+
+	
+	// Task 3
+	public FlightTicketData getAvailPriceItinerary(int howManyTickets, int flightNumber, Date date) 
+	{
+		FlightTicketData ticket = new FlightTicketData();
+		Calendar calArg = Calendar.getInstance();
+		calArg.setTime(date);
+		
+		for (int j = 0; j < getFlightDataObj().getItinerary().size(); j++) {
+
+			Calendar cal = Calendar.getInstance();
+			cal.setTime(getFlightDataObj().getItinerary().get(j).getFlightDate().toGregorianCalendar().getTime());
+
+			if (flightNumber == getFlightDataObj().getItinerary().get(j).getFlightNum()
+					&& cal.get(Calendar.DAY_OF_MONTH) == calArg.get(Calendar.DAY_OF_MONTH)
+					&& cal.get(Calendar.MONTH) == calArg.get(Calendar.MONTH)
+					&& cal.get(Calendar.YEAR) == calArg.get(Calendar.YEAR)
+					&& howManyTickets <= getFlightDataObj().getItinerary().get(j).getTickets()) {
+				ticket = populateFlightTicketObj(j);
+			}
+		}
+		return ticket;
 	}
 }

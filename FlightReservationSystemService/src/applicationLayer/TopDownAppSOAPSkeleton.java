@@ -31,6 +31,19 @@ public class TopDownAppSOAPSkeleton implements applicationLayer.TopDownApp_PortT
         org.apache.axis.description.FaultDesc _fault;
         org.apache.axis.description.ParameterDesc [] _params;
         _params = new org.apache.axis.description.ParameterDesc [] {
+            new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "username"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false), 
+            new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "password"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false), 
+        };
+        _oper = new org.apache.axis.description.OperationDesc("login", _params, new javax.xml.namespace.QName("", "loginReturn"));
+        _oper.setReturnType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
+        _oper.setElementQName(new javax.xml.namespace.QName("http://applicationLayer", "login"));
+        _oper.setSoapAction("");
+        _myOperationsList.add(_oper);
+        if (_myOperations.get("login") == null) {
+            _myOperations.put("login", new java.util.ArrayList());
+        }
+        ((java.util.List)_myOperations.get("login")).add(_oper);
+        _params = new org.apache.axis.description.ParameterDesc [] {
             new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "creditCard"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false), 
             new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "flightNum"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "integer"), java.math.BigInteger.class, false, false), 
         };
@@ -64,15 +77,21 @@ public class TopDownAppSOAPSkeleton implements applicationLayer.TopDownApp_PortT
     public TopDownAppSOAPSkeleton(applicationLayer.TopDownApp_PortType impl) {
         this.impl = impl;
     }
-    public java.math.BigInteger bookTicket(java.lang.String creditCard, java.math.BigInteger flightNum) throws java.rmi.RemoteException
+    public java.lang.String login(java.lang.String username, java.lang.String password) throws java.rmi.RemoteException
     {
-        java.math.BigInteger ret = impl.bookTicket(creditCard, flightNum);
+        java.lang.String ret = impl.login(username, password);
         return ret;
     }
 
-    public java.math.BigInteger issueTicket(java.math.BigInteger bookingNum) throws java.rmi.RemoteException
+    public java.lang.String bookTicket(java.lang.String creditCard, java.math.BigInteger flightNum) throws java.rmi.RemoteException
     {
-        java.math.BigInteger ret = impl.issueTicket(bookingNum);
+    	java.lang.String ret = impl.bookTicket(creditCard, flightNum);
+        return ret;
+    }
+
+    public java.lang.String issueTicket(java.math.BigInteger bookingNum) throws java.rmi.RemoteException
+    {
+    	java.lang.String ret = impl.issueTicket(bookingNum);
         return ret;
     }
 

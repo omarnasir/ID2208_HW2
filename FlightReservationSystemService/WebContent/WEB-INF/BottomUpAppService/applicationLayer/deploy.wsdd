@@ -10,12 +10,21 @@
       <parameter name="className" value="applicationLayer.BottomUpApp"/>
       <parameter name="wsdlPortType" value="BottomUpApp"/>
       <parameter name="typeMappingVersion" value="1.2"/>
+      <operation xmlns:operNS="http://applicationLayer" xmlns:retNS="http://applicationLayer" xmlns:rtns="http://dataObjects" name="checkAvailability" qname="operNS:checkAvailability" returnQName="retNS:checkAvailabilityReturn" returnType="rtns:FlightTicketData" soapAction="">
+        <parameter xmlns:pns="http://applicationLayer" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:howManyTickets" type="tns:int"/>
+        <parameter xmlns:pns="http://applicationLayer" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:flightNumber" type="tns:int"/>
+        <parameter xmlns:pns="http://applicationLayer" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:date" type="tns:dateTime"/>
+      </operation>
       <operation xmlns:operNS="http://applicationLayer" xmlns:retNS="http://applicationLayer" xmlns:rtns="http://dataObjects" name="checkItinerary" qname="operNS:checkItinerary" returnQName="retNS:checkItineraryReturn" returnType="rtns:FlightCityData" soapAction="">
         <parameter xmlns:pns="http://applicationLayer" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:fromCity" type="tns:string"/>
         <parameter xmlns:pns="http://applicationLayer" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:toCity" type="tns:string"/>
       </operation>
-      <parameter name="allowedMethods" value="checkItinerary"/>
+      <operation xmlns:operNS="http://applicationLayer" xmlns:retNS="http://applicationLayer" xmlns:rtns="http://dataObjects" name="priceOfItineraries" qname="operNS:priceOfItineraries" returnQName="retNS:priceOfItinerariesReturn" returnType="rtns:FlightTicketData" soapAction="">
+        <parameter xmlns:pns="http://applicationLayer" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:flightNumbers" type="tns:int"/>
+      </operation>
+      <parameter name="allowedMethods" value="priceOfItineraries checkAvailability checkItinerary"/>
 
       <typeMapping xmlns:ns="http://dataObjects" qname="ns:FlightCityData" type="java:dataObjects.FlightCityData" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://dataObjects" qname="ns:FlightTicketData" type="java:dataObjects.FlightTicketData" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
   </service>
 </deployment>
