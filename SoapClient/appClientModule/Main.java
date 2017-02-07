@@ -33,7 +33,7 @@ public class Main {
 	        SOAPMessage soapMessage = messageFactory.createMessage();
 	        SOAPPart soapPart = soapMessage.getSOAPPart();
 
-	        String serverURI = "http://localhost:8080/";
+	        String serverURI = "http://applicationLayer";
 
 	        SOAPEnvelope envelope = soapPart.getEnvelope();
 	        envelope.addNamespaceDeclaration("app", serverURI);
