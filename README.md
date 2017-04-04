@@ -5,3 +5,7 @@ The repository showcases both Bottoms-Up and Top-Down approach in developing web
 Building Web Clients to Consume SOAP based Web Services
 
 The second part of the repository contains a client implementing JAVA servlets, which were used to consume the above mentioned web services, using simple routines.
+
+SOAP Client
+
+The third part of the repository contains SOAP request-response messages that were constructed manually, and are used to consume the same web services. The response is printed out in the output window.
